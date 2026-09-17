@@ -1,0 +1,138 @@
+/* ==========================================================
+   AQUA GRACE v2 — Design tokens
+   Light, clean, water-fresh theme
+   ========================================================== */
+:root {
+  /* Brand colors */
+  --brand-navy: #0a2a5c;
+  --brand-navy-deep: #071d40;
+  --brand-blue: #2489da;
+  --brand-blue-light: #5aaee8;
+  --brand-blue-soft: #eaf2ff;
+  --brand-cyan: #3fa9f5;
+  --brand-cyan-strong: #2489da;
+  --brand-mint: #7fe0b0;
+  --brand-white: #ffffff;
+  --brand-ink: #0f2340;
+  --brand-ink-muted: #4d5f7a;
+  --brand-surface: #f5f9ff;
+  --brand-surface-2: #edf3fb;
+  --brand-border: rgba(10, 42, 92, 0.10);
+  --brand-border-strong: rgba(10, 42, 92, 0.18);
+
+  /* Neutral light palette for dashboard */
+  --neutral-bg: #f4f6fa;
+  --neutral-card: #ffffff;
+  --neutral-border: #e4e9f2;
+  --neutral-text: #0f2340;
+  --neutral-text-muted: #6b7a90;
+  --neutral-text-faint: #9aaab8;
+
+  /* Status colors */
+  --status-green: #1a9c4e;
+  --status-green-bg: #f0faf4;
+  --status-yellow: #d4930a;
+  --status-yellow-bg: #fff8e6;
+  --status-red: #c0392b;
+  --status-red-bg: #fff0f0;
+  --status-blue: #2489da;
+  --status-blue-bg: #eaf2ff;
+
+  /* Typography */
+  --font-display: "Sora", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Spacing */
+  --space-2xs: 0.375rem;
+  --space-xs: 0.625rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 24px;
+
+  /* Layout */
+  --content-max-width: 1200px;
+  --sidebar-collapsed-width: 64px;
+  --sidebar-expanded-width: 220px;
+
+  /* Motion */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* Dark tokens (used by admin login panel on hero) */
+  --color-bg: #071b22;
+  --color-bg-elevated: #0d2630;
+  --color-overlay-strong: rgba(4, 15, 19, 0.85);
+  --color-text-primary: #f4fafb;
+  --color-text-secondary: #b9cdd1;
+  --color-text-muted: #7f9a9f;
+  --color-accent: #5fb8c4;
+  --color-accent-strong: #3e97a4;
+  --color-border: rgba(244, 250, 251, 0.14);
+}
+
+/* ==========================================================
+   Reset
+   ========================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-width: 320px;
+  overflow-x: hidden;
+  background-color: var(--brand-white);
+  color: var(--brand-ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { margin: 0; font-family: var(--font-display); font-weight: 600; line-height: 1.15; }
+p { margin: 0; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--brand-cyan);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================
+   Shared helpers
+   ========================================================== */
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* Dashboard body background */
+.dashboard-bg {
+  background-color: var(--neutral-bg);
+  min-height: 100vh;
+}

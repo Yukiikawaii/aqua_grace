@@ -1,0 +1,480 @@
+/* ==========================================================
+   Staff Dashboard — long strip, light theme
+   ========================================================== */
+
+/* Login */
+.staff-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neutral-bg);
+  padding: var(--space-lg);
+}
+
+.staff-login__card {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--neutral-card);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl) var(--space-lg);
+  box-shadow: 0 8px 32px rgba(15, 35, 64, 0.08);
+}
+
+.staff-login__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brand-blue);
+  margin: 0 0 4px;
+}
+
+.staff-login__title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--neutral-text);
+  margin: 0 0 var(--space-lg);
+}
+
+.staff-login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.staff-login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.staff-login__field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neutral-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.staff-login__field input {
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-md);
+  background: var(--neutral-card);
+  color: var(--neutral-text);
+  font-size: 0.95rem;
+  font-family: inherit;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.staff-login__field input:focus-visible {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(36, 137, 218, 0.12);
+}
+
+.staff-login__pw-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.staff-login__pw-wrap input {
+  padding-right: 4rem;
+}
+
+.staff-login__pw-wrap button {
+  position: absolute;
+  right: var(--space-sm);
+  background: none;
+  border: none;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.staff-login__error {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--status-red);
+}
+
+.staff-login__submit {
+  margin-top: var(--space-xs);
+  padding: var(--space-sm);
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--brand-blue);
+  color: var(--brand-white);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.staff-login__submit:hover {
+  background-color: var(--brand-navy);
+  transform: translateY(-1px);
+}
+
+.staff-login__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+}
+
+/* ==========================================================
+   Dashboard
+   ========================================================== */
+.staff-dashboard {
+  min-height: 100vh;
+  background-color: var(--neutral-bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.staff-header {
+  background-color: var(--brand-navy);
+  padding: var(--space-md) 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.staff-header__inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.staff-header__eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand-mint);
+  margin: 0 0 2px;
+}
+
+.staff-header__name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--brand-white);
+  margin: 0;
+}
+
+.staff-header__signout {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.staff-header__signout:hover {
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--brand-white);
+}
+
+/* Body */
+.staff-body {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  width: 100%;
+  padding: var(--space-lg) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* Section */
+.staff-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.staff-section__title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--neutral-text);
+  margin: 0;
+  padding-bottom: var(--space-xs);
+  border-bottom: 2px solid var(--neutral-border);
+}
+
+/* Progress wheels */
+.staff-wheels {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.progress-wheel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.progress-wheel__label {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--neutral-text-muted);
+  text-align: center;
+}
+
+.staff-stats {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.staff-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.staff-stat__value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--neutral-text);
+}
+
+.staff-stat__label {
+  font-size: 0.78rem;
+  color: var(--neutral-text-muted);
+  font-weight: 500;
+}
+
+/* Loading / empty */
+.staff-loading,
+.staff-empty {
+  padding: var(--space-xl);
+  text-align: center;
+  color: var(--neutral-text-muted);
+  font-size: 0.88rem;
+  background-color: var(--neutral-card);
+  border: 1px dashed var(--neutral-border);
+  border-radius: var(--radius-lg);
+}
+
+/* Delivery cards */
+.staff-deliveries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.staff-delivery-card {
+  background-color: var(--neutral-card);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  box-shadow: 0 2px 8px rgba(15, 35, 64, 0.05);
+  border-left: 3px solid var(--brand-blue);
+}
+
+.staff-delivery-card--complaint {
+  border-left-color: var(--status-red);
+}
+
+.staff-delivery-card--done {
+  border-left-color: var(--status-green);
+  opacity: 0.85;
+}
+
+.sdc__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.sdc__id {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--neutral-text-faint);
+}
+
+.sdc__name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neutral-text);
+}
+
+.sdc__phone,
+.sdc__address {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--neutral-text-muted);
+}
+
+.sdc__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.sdc__status {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sdc__status--assigned { background: var(--status-blue-bg); color: var(--status-blue); }
+.sdc__status--out_for_delivery { background: var(--status-yellow-bg); color: var(--status-yellow); }
+.sdc__status--delivered { background: var(--status-green-bg); color: var(--status-green); }
+.sdc__status--complaint { background: var(--status-red-bg); color: var(--status-red); }
+
+.sdc__total {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neutral-text);
+}
+
+.sdc__complaint-flag {
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--status-red-bg);
+  border-left: 3px solid var(--status-red);
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  color: var(--status-red);
+  font-weight: 500;
+}
+
+.sdc__actions {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.sdc__btn {
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-md);
+  background: var(--neutral-bg);
+  color: var(--neutral-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.sdc__btn:hover {
+  border-color: var(--neutral-text-muted);
+}
+
+.sdc__btn--primary {
+  background-color: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: var(--brand-white);
+}
+
+.sdc__btn--primary:hover {
+  background-color: var(--brand-navy);
+  border-color: var(--brand-navy);
+}
+
+.sdc__btn--danger {
+  background-color: var(--status-red-bg);
+  border-color: var(--status-red);
+  color: var(--status-red);
+}
+
+.sdc__btn--danger:hover {
+  background-color: var(--status-red);
+  color: var(--brand-white);
+}
+
+/* Complaint form */
+.sdc__complaint-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background-color: var(--neutral-bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-border);
+}
+
+.sdc__complaint-title {
+  margin: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--neutral-text);
+}
+
+.sdc__complaint-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sdc__complaint-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neutral-text-muted);
+}
+
+.sdc__complaint-field select,
+.sdc__complaint-field textarea {
+  width: 100%;
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--neutral-border);
+  border-radius: var(--radius-md);
+  background: var(--neutral-card);
+  color: var(--neutral-text);
+  font-size: 0.88rem;
+  font-family: inherit;
+}
+
+.sdc__complaint-field select:focus-visible,
+.sdc__complaint-field textarea:focus-visible {
+  outline: none;
+  border-color: var(--brand-blue);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .staff-wheels {
+    gap: var(--space-lg);
+  }
+
+  .sdc__header {
+    flex-direction: column;
+  }
+
+  .sdc__right {
+    align-items: flex-start;
+  }
+}

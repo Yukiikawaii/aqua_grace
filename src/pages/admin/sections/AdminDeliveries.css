@@ -1,0 +1,63 @@
+.admin-deliveries { display: flex; flex-direction: column; gap: var(--space-lg); }
+.admin-deliveries__header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm); }
+.admin-deliveries__title { font-family: var(--font-display); font-size: clamp(1.4rem,3vw,1.9rem); font-weight: 700; color: var(--neutral-text); margin: 0; }
+.admin-deliveries__sub { margin: 4px 0 0; font-size: 0.88rem; color: var(--neutral-text-muted); }
+
+.admin-deliveries__message { display: flex; align-items: center; justify-content: space-between; padding: var(--space-sm) var(--space-md); background: var(--status-blue-bg); border: 1px solid var(--status-blue); border-radius: var(--radius-md); font-size: 0.88rem; color: var(--status-blue); }
+.admin-deliveries__message button { background: none; border: none; color: var(--status-blue); cursor: pointer; font-size: 1rem; }
+
+/* Complaints section */
+.admin-deliveries__complaints { border: 2px solid var(--status-red); border-radius: var(--radius-lg); overflow: hidden; }
+.complaints-header { display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-sm) var(--space-md); background-color: var(--status-red-bg); border-bottom: 1px solid var(--status-red); }
+.complaints-header__icon { font-size: 1.2rem; }
+.complaints-header__title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--status-red); margin: 0; }
+.complaints-list { display: flex; flex-direction: column; gap: 0; }
+
+.complaint-card { padding: var(--space-md); border-bottom: 1px solid rgba(192,57,43,0.15); display: flex; flex-direction: column; gap: var(--space-sm); background-color: var(--neutral-card); }
+.complaint-card:last-child { border-bottom: none; }
+.complaint-card__header { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-sm); }
+.complaint-card__id { margin: 0; font-size: 0.78rem; color: var(--neutral-text-faint); }
+.complaint-card__consumer,.complaint-card__staff { margin: 0; font-size: 0.85rem; color: var(--neutral-text-muted); }
+.complaint-card__consumer { font-weight: 600; color: var(--neutral-text); }
+.complaint-card__right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.complaint-card__type { padding: 2px 10px; border-radius: 999px; background: var(--status-red-bg); color: var(--status-red); font-size: 0.72rem; font-weight: 600; text-transform: capitalize; }
+.complaint-card__total { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--neutral-text); }
+.complaint-card__note { margin: 0; font-size: 0.82rem; color: var(--neutral-text-muted); font-style: italic; }
+.complaint-card__instruction { margin: 0; font-size: 0.82rem; color: var(--neutral-text-muted); flex: 1; }
+.complaint-card__actions { display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap; }
+.complaint-card__resolve { padding: 6px 14px; border: none; border-radius: var(--radius-md); background-color: var(--status-green); color: var(--brand-white); font-size: 0.82rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: background-color var(--transition-fast); }
+.complaint-card__resolve:hover { background-color: #148040; }
+.complaint-card__resolve:disabled { opacity: 0.6; cursor: default; }
+
+/* Filter */
+.deliveries-filter { display: flex; flex-wrap: wrap; gap: 6px; }
+.deliveries-filter__btn { padding: 6px 14px; border: 1px solid var(--neutral-border); border-radius: 999px; background: var(--neutral-card); color: var(--neutral-text-muted); font-size: 0.82rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: all var(--transition-fast); }
+.deliveries-filter__btn:hover { border-color: var(--brand-blue); color: var(--brand-blue); }
+.deliveries-filter__btn--active { background-color: var(--brand-blue); border-color: var(--brand-blue); color: var(--brand-white); }
+
+/* Delivery cards */
+.deliveries-empty { padding: var(--space-xl); text-align: center; color: var(--neutral-text-muted); font-size: 0.88rem; background-color: var(--neutral-card); border: 1px dashed var(--neutral-border); border-radius: var(--radius-lg); }
+.deliveries-list { display: flex; flex-direction: column; gap: var(--space-md); }
+.delivery-card { padding: var(--space-md); background-color: var(--neutral-card); border: 1px solid var(--neutral-border); border-radius: var(--radius-lg); box-shadow: 0 2px 8px rgba(15,35,64,0.05); display: flex; flex-direction: column; gap: var(--space-sm); }
+.delivery-card--assigned { border-left: 3px solid var(--status-blue); }
+.delivery-card--out_for_delivery { border-left: 3px solid var(--status-yellow); }
+.delivery-card--delivered { border-left: 3px solid var(--status-green); }
+.delivery-card--complaint { border-left: 3px solid var(--status-red); }
+.delivery-card__header { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-sm); }
+.delivery-card__id { margin: 0; font-size: 0.78rem; color: var(--neutral-text-faint); }
+.delivery-card__consumer,.delivery-card__address,.delivery-card__staff,.delivery-card__sms { margin: 0; font-size: 0.82rem; color: var(--neutral-text-muted); }
+.delivery-card__consumer { font-weight: 600; color: var(--neutral-text); font-size: 0.9rem; }
+.delivery-card__right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.delivery-card__status { padding: 3px 10px; border-radius: 999px; font-size: 0.72rem; font-weight: 600; }
+.delivery-card__status--assigned { background: var(--status-blue-bg); color: var(--status-blue); }
+.delivery-card__status--out_for_delivery { background: var(--status-yellow-bg); color: var(--status-yellow); }
+.delivery-card__status--delivered { background: var(--status-green-bg); color: var(--status-green); }
+.delivery-card__status--complaint { background: var(--status-red-bg); color: var(--status-red); }
+.delivery-card__total { margin: 0; font-size: 0.9rem; font-weight: 700; color: var(--neutral-text); }
+.delivery-card__actions { display: flex; gap: var(--space-sm); }
+.delivery-card__dispatch { padding: 6px 14px; border: none; border-radius: var(--radius-md); background-color: var(--brand-blue); color: var(--brand-white); font-size: 0.82rem; font-weight: 600; font-family: inherit; cursor: pointer; transition: background-color var(--transition-fast); }
+.delivery-card__dispatch:hover { background-color: var(--brand-navy); }
+.delivery-card__dispatch:disabled { opacity: 0.6; cursor: default; }
+.delivery-card__complaint-flag { padding: var(--space-xs) var(--space-sm); background-color: var(--status-red-bg); border-left: 3px solid var(--status-red); border-radius: var(--radius-sm); font-size: 0.82rem; color: var(--status-red); font-weight: 500; }
+
+@media (max-width: 600px) { .delivery-card__header { flex-direction: column; } .delivery-card__right { align-items: flex-start; } }

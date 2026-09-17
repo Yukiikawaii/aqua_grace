@@ -1,0 +1,96 @@
+:root {
+  --sidebar-collapsed-width: 64px;
+  --sidebar-expanded-width: 220px;
+  --sidebar-bg: #071d40;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-accent: #3fa9f5;
+  --sidebar-text: rgba(255, 255, 255, 0.7);
+  --sidebar-text-active: #ffffff;
+  --sidebar-hover-bg: rgba(255, 255, 255, 0.06);
+  --sidebar-active-bg: rgba(63, 169, 245, 0.12);
+}
+
+.sidebar {
+  position: fixed; top: 0; left: 0; height: 100vh;
+  width: var(--sidebar-collapsed-width);
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex; flex-direction: column; z-index: 200;
+  overflow: hidden;
+  transition: width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar--expanded { width: var(--sidebar-expanded-width); }
+
+.sidebar__overlay { display: none; }
+
+.sidebar__brand {
+  display: flex; align-items: center; gap: 12px;
+  padding: 20px 0 20px 18px; min-height: 64px;
+  border-bottom: 1px solid var(--sidebar-border);
+  white-space: nowrap; overflow: hidden;
+}
+
+.sidebar__brand-icon { flex-shrink: 0; display: flex; color: var(--sidebar-accent); width: 28px; height: 28px; }
+.sidebar__brand-icon svg { width: 28px; height: 28px; }
+.sidebar__brand-label {
+  font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+  color: var(--brand-white); letter-spacing: 0.04em;
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 200ms ease 50ms, transform 200ms ease 50ms;
+}
+.sidebar--expanded .sidebar__brand-label,
+.sidebar--mobile-open .sidebar__brand-label { opacity: 1; transform: translateX(0); }
+
+.sidebar__nav { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 12px 0; scrollbar-width: none; }
+.sidebar__nav::-webkit-scrollbar { display: none; }
+.sidebar__list { display: flex; flex-direction: column; gap: 2px; padding: 0 8px; }
+.sidebar__item { list-style: none; }
+
+.sidebar__link {
+  display: flex; align-items: center; gap: 12px; padding: 10px;
+  border-radius: var(--radius-md); color: var(--sidebar-text);
+  text-decoration: none; white-space: nowrap; overflow: hidden;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.sidebar__link:hover { background-color: var(--sidebar-hover-bg); color: var(--sidebar-text-active); }
+.sidebar__link--active { background-color: var(--sidebar-active-bg); color: var(--sidebar-accent); }
+
+.sidebar__icon { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; }
+.sidebar__icon svg { width: 20px; height: 20px; }
+
+.sidebar__label {
+  font-size: 0.88rem; font-weight: 500;
+  opacity: 0; transform: translateX(-8px);
+  transition: opacity 200ms ease 50ms, transform 200ms ease 50ms;
+  pointer-events: none;
+}
+.sidebar--expanded .sidebar__label,
+.sidebar--mobile-open .sidebar__label { opacity: 1; transform: translateX(0); }
+
+.sidebar__footer { padding: 12px 8px; border-top: 1px solid var(--sidebar-border); }
+.sidebar__signout {
+  display: flex; align-items: center; gap: 12px; width: 100%;
+  padding: 10px; border: none; border-radius: var(--radius-md);
+  background: transparent; color: var(--sidebar-text);
+  font-family: inherit; font-size: 0.88rem; font-weight: 500;
+  cursor: pointer; white-space: nowrap; overflow: hidden;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.sidebar__signout:hover { background-color: rgba(240,168,168,0.1); color: #f0a8a8; }
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: var(--sidebar-expanded-width);
+    transform: translateX(calc(-1 * var(--sidebar-expanded-width)));
+    transition: transform 280ms cubic-bezier(0.4,0,0.2,1), width 0ms;
+  }
+  .sidebar--mobile-open { transform: translateX(0); width: var(--sidebar-expanded-width); }
+  .sidebar__overlay {
+    display: block; position: fixed; inset: 0;
+    background-color: rgba(4,15,19,0.6); z-index: 199;
+    backdrop-filter: blur(2px);
+  }
+  .sidebar--mobile-open .sidebar__label,
+  .sidebar--mobile-open .sidebar__brand-label { opacity: 1; transform: translateX(0); }
+}

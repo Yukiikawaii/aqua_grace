@@ -1,0 +1,57 @@
+.admin-home { display: flex; flex-direction: column; gap: var(--space-lg); }
+
+.admin-home__header {
+  display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: var(--space-sm);
+}
+.admin-home__title { font-family: var(--font-display); font-size: clamp(1.4rem,3vw,1.9rem); font-weight: 700; color: var(--neutral-text); margin: 0; }
+.admin-home__date { margin: 4px 0 0; font-size: 0.88rem; color: var(--neutral-text-muted); }
+.admin-home__badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 999px; background-color: var(--status-blue-bg); color: var(--status-blue); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; white-space: nowrap; }
+.admin-home__loading { padding: var(--space-lg); text-align: center; color: var(--neutral-text-muted); font-size: 0.88rem; }
+
+/* Complaint alert */
+.admin-home__complaint-alert {
+  display: flex; align-items: flex-start; gap: var(--space-md);
+  padding: var(--space-md); border-radius: var(--radius-lg);
+  background-color: var(--status-red-bg); border: 1px solid var(--status-red);
+}
+.admin-home__complaint-icon { font-size: 1.4rem; flex-shrink: 0; }
+.admin-home__complaint-alert strong { display: block; font-size: 0.95rem; color: var(--status-red); }
+.admin-home__complaint-alert p { margin: 2px 0 0; font-size: 0.82rem; color: var(--neutral-text-muted); }
+
+/* Stat cards */
+.admin-home__stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: var(--space-md); }
+.stat-card {
+  padding: var(--space-md); border-radius: var(--radius-lg);
+  background-color: var(--neutral-card); border: 1px solid var(--neutral-border);
+  box-shadow: 0 2px 8px rgba(15,35,64,0.05);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.stat-card:hover { box-shadow: 0 6px 20px rgba(15,35,64,0.1); transform: translateY(-2px); }
+.stat-card__label { margin: 0; font-size: 0.75rem; font-weight: 600; color: var(--neutral-text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat-card__value { margin: 4px 0 0; font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--neutral-text); line-height: 1.1; }
+.stat-card--blue { border-top: 3px solid var(--status-blue); }
+.stat-card--yellow { border-top: 3px solid var(--status-yellow); }
+.stat-card--red { border-top: 3px solid var(--status-red); }
+.stat-card--green { border-top: 3px solid var(--status-green); }
+
+/* Sections */
+.admin-home__section { display: flex; flex-direction: column; gap: var(--space-sm); }
+.admin-home__section-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--neutral-text); margin: 0; padding-bottom: var(--space-xs); border-bottom: 1px solid var(--neutral-border); }
+
+/* Low stock */
+.admin-home__low-stock { display: flex; flex-direction: column; gap: 6px; }
+.low-stock-item { display: flex; justify-content: space-between; align-items: center; padding: var(--space-xs) var(--space-md); background-color: var(--neutral-card); border: 1px solid var(--neutral-border); border-radius: var(--radius-md); }
+.low-stock-item__label { font-size: 0.88rem; font-weight: 600; color: var(--neutral-text); }
+.low-stock-item__qty { font-size: 0.82rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; }
+.low-stock-item__qty--low { background: var(--status-yellow-bg); color: var(--status-yellow); }
+.low-stock-item__qty--out { background: var(--status-red-bg); color: var(--status-red); }
+
+/* Staff wheels */
+.admin-home__staff-wheels { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+.staff-wheel-card { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: var(--space-sm) var(--space-md); background-color: var(--neutral-card); border: 1px solid var(--neutral-border); border-radius: var(--radius-lg); }
+.staff-wheel-card__name { margin: 0; font-size: 0.82rem; font-weight: 700; color: var(--neutral-text); }
+.staff-wheel-card__total { margin: 0; font-size: 0.72rem; color: var(--neutral-text-muted); }
+
+@media (max-width: 480px) {
+  .admin-home__stats { grid-template-columns: 1fr 1fr; }
+}
