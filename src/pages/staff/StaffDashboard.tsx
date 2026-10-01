@@ -1,4 +1,4 @@
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { loginStaff, getStaffDeliveries, confirmDelivery, fileComplaint, ApiError } from "../../lib/api";
 import "./StaffDashboard.css";
 
