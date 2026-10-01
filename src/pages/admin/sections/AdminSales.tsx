@@ -39,25 +39,45 @@ function AdminSales() {
   const [filter, setFilter] = useState<DateFilter>("today");
 
   const loadData = async (f: DateFilter) => {
-    setLoading(true);
-    try {
-      const range = getDateRange(f);
-      const [salesData, summaryData] = await Promise.all([
-        range
-          ? listSales(range.from, range.to) as Promise<{ sales: SaleRecord[] }>
-          : listSales() as Promise<{ sales: SaleRecord[] }>,
-        getSalesSummary() as Promise<{ summary: SummaryItem[] }>,
-      ]);
-      setSales((salesData.sales ?? []).map((s) => ({ ...s, total: Number(s.total) })));
-      setSummary((summaryData.summary ?? []).map((s) => ({
-        ...s, price: Number(s.price),
+  setLoading(true);
+
+  const range = getDateRange(f);
+
+  try {
+    const salesData = range
+      ? await listSales(range.from, range.to) as { sales: SaleRecord[] }
+      : await listSales() as { sales: SaleRecord[] };
+
+    setSales(
+      (salesData.sales ?? []).map((s) => ({
+        ...s,
+        total: Number(s.total),
+      }))
+    );
+  } catch (err) {
+    console.error("Failed to load sales:", err);
+    setSales([]);
+  }
+
+  try {
+    const summaryData =
+      await getSalesSummary() as { summary: SummaryItem[] };
+
+    setSummary(
+      (summaryData.summary ?? []).map((s) => ({
+        ...s,
+        price: Number(s.price),
         total_units: Number(s.total_units),
         total_revenue: Number(s.total_revenue),
-      })));
-    } catch { /* silent */ }
-    finally { setLoading(false); }
-  };
+      }))
+    );
+  } catch (err) {
+    console.error("Failed to load sales summary:", err);
+    setSummary([]);
+  }
 
+  setLoading(false);
+};
   useEffect(() => { loadData(filter); }, [filter]);
 
   const totalRevenue = sales.reduce((sum, s) => sum + s.total, 0);

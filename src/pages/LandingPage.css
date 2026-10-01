@@ -633,16 +633,25 @@
 /* ==========================================================
    Responsive
    ========================================================== */
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+/* ---------- Laptop / Tablet ---------- */
 @media (max-width: 960px) {
   .landing-hero__inner {
     grid-template-columns: 1fr;
     gap: var(--space-lg);
-    padding-top: var(--space-xl);
+    padding-top: 110px;
     padding-bottom: var(--space-xl);
   }
 
   .landing-hero__panel {
     justify-content: flex-start;
+  }
+
+  .landing-hero__login {
+    max-width: 420px;
   }
 
   .landing-about__grid {
@@ -652,9 +661,390 @@
   .landing-how__grid {
     grid-template-columns: 1fr;
   }
+
+  .landing-contact__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+
+/* ---------- Tablet / Large Phone ---------- */
+@media (max-width: 768px) {
+  .landing-section {
+    padding: 60px 0;
+  }
+
+  /* Navbar */
+  .landing-navbar {
+    padding: 14px 4%;
+  }
+
+  .landing-navbar__links {
+    gap: 18px;
+  }
+
+  .landing-navbar__links a {
+    font-size: 0.82rem;
+  }
+
+  .landing-navbar__brand span {
+    font-size: 0.9rem;
+  }
+
+  .landing-navbar__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Hero */
+  .landing-hero {
+    min-height: auto;
+  }
+
+  .landing-hero__inner {
+    padding-top: 110px;
+    padding-bottom: 70px;
+  }
+
+  .landing-hero__logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .landing-hero__title {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .landing-hero__desc {
+    font-size: 0.92rem;
+  }
+
+  .landing-hero__login-logo {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* Products */
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contact */
+  .landing-contact__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ---------- Mobile / iPhone / Android ---------- */
 @media (max-width: 600px) {
+  .landing-section {
+    padding: 50px 0;
+  }
+
+  /* Navbar */
+  .landing-navbar {
+    padding: 12px 16px;
+  }
+
+  .landing-navbar__brand {
+    gap: 7px;
+  }
+
+  .landing-navbar__brand span {
+    display: none;
+  }
+
+  .landing-navbar__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  .landing-navbar__links {
+    gap: 12px;
+  }
+
+  .landing-navbar__links a {
+    font-size: 0.72rem;
+  }
+
+  .landing-navbar__links a::after {
+    bottom: -4px;
+  }
+
+  /* Hero */
+  .landing-hero__inner {
+    padding-top: 100px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .landing-hero__title {
+    font-size: clamp(1.7rem, 9vw, 2.3rem);
+  }
+
+  .landing-hero__desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .landing-hero__ctas {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .landing-hero__cta-primary,
+  .landing-hero__cta-secondary {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Login */
+  .landing-hero__login {
+    padding: var(--space-md);
+  }
+
+  .landing-hero__login-logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  /* Products */
+  .products-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .product-card {
+    padding: 14px;
+  }
+
+  .product-card__label {
+    font-size: 1rem;
+  }
+
+  .product-card__price {
+    font-size: 1.3rem;
+  }
+
+  /* About */
+  .landing-about__stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about-stat {
+    min-width: 0;
+    padding: 12px;
+  }
+}
+
+
+/* ---------- Small Android / iPhone ---------- */
+@media (max-width: 400px) {
+  .landing-navbar__links {
+    gap: 8px;
+  }
+
+  .landing-navbar__links a {
+    font-size: 0.65rem;
+  }
+
+  .landing-navbar__logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .landing-hero__inner {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .landing-section__heading {
+    font-size: 1.5rem;
+  }
+}
+
+
+/* ==========================================================
+   Navbar
+   ========================================================== */
+
+.landing-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 5%;
+
+  background: rgba(7, 29, 64, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.landing-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--brand-white);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.landing-navbar__logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.landing-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.landing-navbar__links a {
+  position: relative;
+
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.landing-navbar__links a:hover {
+  color: var(--brand-white);
+  transform: translateY(-1px);
+}
+
+.landing-navbar__links a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0;
+  height: 2px;
+
+  background-color: var(--brand-white);
+
+  transition: width var(--transition-fast);
+}
+
+.landing-navbar__links a:hover::after {
+  width: 100%;
+}
+/* ==========================================================
+   Navbar
+   ========================================================== */
+.landing-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 5%;
+}
+
+.landing-navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: var(--brand-white);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.landing-navbar__logo {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  border-radius: 50%;
+}
+
+.landing-navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.landing-navbar__links a {
+  position: relative;
+
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.landing-navbar__links a:hover {
+  color: var(--brand-white);
+  transform: translateY(-1px);
+}
+
+.landing-navbar__links a::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+
+  width: 0;
+  height: 2px;
+
+  background-color: var(--brand-white);
+
+  transition: width var(--transition-fast);
+}
+
+.landing-navbar__links a:hover::after {
+  width: 100%;
+}
+
+  .landing-navbar {
+    padding: 14px 5%;
+  }
+
+  .landing-navbar__brand span {
+    display: none;
+  }
+
+  .landing-navbar__links {
+    gap: 14px;
+  }
+
+  .landing-navbar__links a {
+    font-size: 0.75rem;
+  }
+
   .products-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -662,10 +1052,173 @@
   .landing-hero__title {
     font-size: clamp(1.6rem, 8vw, 2.4rem);
   }
+
+  .landing-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 5%;
+
+  /* Optional: gives the navbar a glass effect */
+  background: rgba(7, 29, 64, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
-@media (max-width: 380px) {
-  .products-grid {
+/* ==========================================================
+   Mobile Hamburger Menu
+   ========================================================== */
+
+.landing-navbar__burger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 4px;
+}
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 600px) {
+
+  .landing-navbar {
+    padding: 12px 16px;
+  }
+
+  .landing-navbar__brand span {
+    display: none;
+  }
+
+  .landing-navbar__logo {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Show burger */
+  .landing-navbar__burger {
+    display: block;
+    z-index: 1002;
+  }
+
+  /* Hide menu by default */
+  .landing-navbar__links {
+    display: none;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0;
+    padding: 15px 0;
+
+    background: rgba(7, 29, 64, 0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Show menu when burger is clicked */
+  .landing-navbar__links--open {
+    display: flex;
+  }
+
+  .landing-navbar__links a {
+    width: 100%;
+    padding: 14px 0;
+
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  .landing-navbar__links a:hover {
+    transform: none;
+  }
+
+  .landing-navbar__links a::after {
+    display: none;
+  }
+
+  /* Hero spacing */
+  .landing-hero__inner {
+    padding-top: 140px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .landing-hero__title {
+    font-size: clamp(1.7rem, 9vw, 2.3rem);
+  }
+}
+
+/* ==========================================================
+   FINAL MOBILE FIX
+   ========================================================== */
+
+@media (max-width: 600px) {
+
+  /* Keep the hero content below the fixed navbar */
+  .landing-hero {
+    min-height: auto;
+  }
+
+  .landing-hero__inner {
+    display: grid;
     grid-template-columns: 1fr;
+
+    padding-top: 150px !important;
+    padding-bottom: 60px !important;
+
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* Make sure the branding/title is visible */
+  .landing-hero__brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;
+  }
+
+  .landing-hero__logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .landing-hero__title {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 100%;
+
+    font-size: clamp(1.7rem, 9vw, 2.3rem);
+    line-height: 1.1;
+
+    margin-top: 16px;
+  }
+
+  .landing-hero__title span {
+    display: block;
+  }
+
+  .landing-hero__desc {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }

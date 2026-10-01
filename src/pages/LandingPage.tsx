@@ -31,7 +31,7 @@ function LandingPage() {
   const [adminPassword, setAdminPassword] = useState("");
   const [adminError, setAdminError] = useState<string | null>(null);
   const [adminBusy, setAdminBusy] = useState(false);
-
+  const [menuOpen, setMenuOpen] = useState(false);
   // Stocks
   const [stocks, setStocks] = useState<StockItem[]>([]);
   const [stocksLoading, setStocksLoading] = useState(true);
@@ -70,6 +70,37 @@ function LandingPage() {
 
   return (
     <div className="landing">
+      
+      {/* ── NAVBAR ── */}
+ <nav className="landing-navbar">
+  <div className="landing-navbar__brand">
+    <img
+      src={aquaGraceLogo}
+      alt="Aqua Grace"
+      className="landing-navbar__logo"
+    />
+    <p>Aqua Grace</p>
+  </div>
+
+  <button
+    className="landing-navbar__burger"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle navigation menu"
+  >
+    ☰
+  </button>
+
+  <div
+    className={`landing-navbar__links ${
+      menuOpen ? "landing-navbar__links--open" : ""
+    }`}
+  >
+    <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
+    <a href="#about" onClick={() => setMenuOpen(false)}>About Us</a>
+    <a href="#products" onClick={() => setMenuOpen(false)}>Products</a>
+    <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+  </div>
+</nav>
 
       {/* ── HERO ── */}
       <section className="landing-hero" id="home">
@@ -83,7 +114,6 @@ function LandingPage() {
         <div className="landing-hero__inner container">
           {/* Left — branding */}
           <div className="landing-hero__brand">
-            <img src={aquaGraceLogo} alt="Aqua Grace" className="landing-hero__logo" />
             <h1 className="landing-hero__title">
               <span>PURE WATER</span>
               <span>FOR EVERY DAY</span>
@@ -98,10 +128,9 @@ function LandingPage() {
             </div>
           </div>
 
-          {/* Right — admin login panel */}
+       
           <div className="landing-hero__panel">
             <div className="landing-hero__login">
-              <img src={aquaGraceLogo} alt="" className="landing-hero__login-logo" aria-hidden="true" />
               <p className="landing-hero__login-eyebrow">Administrator</p>
               <h2 className="landing-hero__login-title">Admin Sign In</h2>
               <form onSubmit={handleAdminLogin} noValidate className="landing-hero__login-form">

@@ -26,19 +26,31 @@ function AdminDeliveries() {
   const [filter, setFilter] = useState("all");
   const [actionBusy, setActionBusy] = useState<number | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+const loadData = async () => {
+  setLoading(true);
 
-  const loadData = async () => {
-    setLoading(true);
-    try {
-      const [delData, compData] = await Promise.all([
-        listDeliveries() as Promise<{ deliveries: Delivery[] }>,
-        listComplaints() as Promise<{ complaints: Delivery[] }>,
-      ]);
-      setDeliveries(delData.deliveries ?? []);
-      setComplaints(compData.complaints ?? []);
-    } catch { /* silent */ }
-    finally { setLoading(false); }
-  };
+  try {
+    const delData =
+      await listDeliveries() as { deliveries: Delivery[] };
+
+    setDeliveries(delData.deliveries ?? []);
+  } catch (err) {
+    console.error("Failed to load deliveries:", err);
+    setDeliveries([]);
+  }
+
+  try {
+    const compData =
+      await listComplaints() as { complaints: Delivery[] };
+
+    setComplaints(compData.complaints ?? []);
+  } catch (err) {
+    console.error("Failed to load complaints:", err);
+    setComplaints([]);
+  }
+
+  setLoading(false);
+};
 
   useEffect(() => { loadData(); }, []);
 

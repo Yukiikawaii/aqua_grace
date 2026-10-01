@@ -42,16 +42,31 @@ function AdminAccount() {
   const [confirmPw, setConfirmPw] = useState(""); const [pwError, setPwError] = useState<string | null>(null);
   const [pwSuccess, setPwSuccess] = useState<string | null>(null); const [pwBusy, setPwBusy] = useState(false);
 
-  const loadData = async () => {
-    try {
-      const [staffData, statsData] = await Promise.all([
-        listStaff() as Promise<{ staff: StaffMember[] }>,
-        getAllStaffStats() as Promise<{ stats: StaffStat[] }>,
-      ]);
-      setStaff(staffData.staff ?? []);
-      setStats(statsData.stats ?? []);
-    } catch { /* silent */ }
-  };
+ const loadData = async () => {
+  try {
+    const staffData =
+      await listStaff() as { staff: StaffMember[] };
+
+    console.log("STAFF DATA:", staffData);
+
+    setStaff(staffData.staff ?? []);
+  } catch (err) {
+    console.error("FAILED TO LOAD STAFF:", err);
+    setStaff([]);
+  }
+
+  try {
+    const statsData =
+      await getAllStaffStats() as { stats: StaffStat[] };
+
+    console.log("STAFF STATS:", statsData);
+
+    setStats(statsData.stats ?? []);
+  } catch (err) {
+    console.error("FAILED TO LOAD STAFF STATS:", err);
+    setStats([]);
+  }
+};
 
   useEffect(() => { loadData(); }, []);
 
