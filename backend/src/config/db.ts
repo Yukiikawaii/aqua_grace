@@ -6,11 +6,25 @@ export const pool = mysql.createPool({
   user: process.env.DB_USER ?? "root",
   password: process.env.DB_PASSWORD ?? "",
   database: process.env.DB_NAME ?? "aqua_grace",
-
   ssl: {
     minVersion: "TLSv1.2",
   },
-
   waitForConnections: true,
   connectionLimit: 10,
 });
+
+pool.query("SELECT DATABASE() AS db, @@hostname AS host")
+  .then(([rows]) => {
+    console.log("CONNECTED DATABASE:", rows);
+  })
+  .catch((error) => {
+    console.error("DATABASE CHECK ERROR:", error);
+  });
+
+pool.query("SHOW CREATE TABLE orders")
+  .then(([rows]) => {
+    console.log("ORDERS TABLE FROM RENDER:", rows);
+  })
+  .catch((error) => {
+    console.error("ORDERS TABLE CHECK ERROR:", error);
+  });
