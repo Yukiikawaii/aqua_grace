@@ -24,8 +24,11 @@ function AdminDeliveries() {
   const [complaints, setComplaints] = useState<Delivery[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState("all");
-  const [actionBusy, setActionBusy] = useState<number | null>(null);
-  const [message, setMessage] = useState<string | null>(null);
+ const [actionBusy, setActionBusy] = useState<number | null>(null);
+const [message, setMessage] = useState<string | null>(null);
+
+const [selectedStaff, setSelectedStaff] =
+  useState<Record<number, number | undefined>>({});
 const loadData = async () => {
   setLoading(true);
 
@@ -54,16 +57,34 @@ const loadData = async () => {
 
   useEffect(() => { loadData(); }, []);
 
-  const handleDispatch = async (id: number) => {
-    setActionBusy(id);
-    try {
-      const result = await dispatchDelivery(id) as { message: string };
-      setMessage(result.message);
-      await loadData();
-    } catch (err) {
-      setMessage(err instanceof ApiError ? err.message : "Something went wrong.");
-    } finally { setActionBusy(null); }
-  };
+const handleDispatch = async (id: number) => {
+  const staffId = selectedStaff[id];
+
+  if (staffId === undefined) {
+    setMessage("Please select a staff member first.");
+    return;
+  }
+
+  setActionBusy(id);
+
+  try {
+    const result = await dispatchDelivery(
+      id,
+      staffId
+    ) as { message: string };
+
+    setMessage(result.message);
+    await loadData();
+  } catch (err) {
+    setMessage(
+      err instanceof ApiError
+        ? err.message
+        : "Something went wrong."
+    );
+  } finally {
+    setActionBusy(null);
+  }
+};
 
   const handleResolve = async (id: number) => {
     setActionBusy(id);
@@ -182,18 +203,50 @@ const loadData = async () => {
                 </div>
               </div>
 
-              {d.status === "assigned" && (
-                <div className="delivery-card__actions">
-                  <button
-                    type="button"
-                    className="delivery-card__dispatch"
-                    disabled={actionBusy === d.id}
-                    onClick={() => handleDispatch(d.id)}
-                  >
-                    {actionBusy === d.id ? "Dispatching…" : "Mark Out for Delivery + Send SMS"}
-                  </button>
-                </div>
-              )}
+            {d.status === "assigned" && (
+  <div className="delivery-card__actions">
+
+    <select
+      value={selectedStaff[d.id] ?? d.staff_id}
+      onChange={(e) =>
+        setSelectedStaff((prev) => ({
+          ...prev,
+          [d.id]: Number(e.target.value),
+        }))
+      }
+    >
+      <option value="">Select Staff</option>
+
+      {deliveries
+        .filter(
+          (staff, index, self) =>
+            self.findIndex(
+              (s) => s.staff_id === staff.staff_id
+            ) === index
+        )
+        .map((staff) => (
+          <option
+            key={staff.staff_id}
+            value={staff.staff_id}
+          >
+            {staff.staff_name}
+          </option>
+        ))}
+    </select>
+
+    <button
+      type="button"
+      className="delivery-card__dispatch"
+      disabled={actionBusy === d.id}
+      onClick={() => handleDispatch(d.id)}
+    >
+      {actionBusy === d.id
+        ? "Dispatching…"
+        : "Mark Out for Delivery + Send SMS"}
+    </button>
+
+  </div>
+)}
 
               {d.has_complaint && !d.complaint_resolved && (
                 <div className="delivery-card__complaint-flag">

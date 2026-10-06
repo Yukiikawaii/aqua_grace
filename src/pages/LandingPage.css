@@ -70,19 +70,25 @@
 .landing-hero__inner {
   position: relative;
   z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr minmax(320px, 380px);
+  min-height: 100vh;
+  display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  justify-content: center;
   padding-top: var(--space-2xl);
   padding-bottom: var(--space-2xl);
+  box-sizing: border-box;
 }
 
 /* Brand side */
 .landing-hero__brand {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: var(--space-md);
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .landing-hero__logo {
@@ -108,10 +114,14 @@
   color: rgba(255, 255, 255, 0.85);
   font-size: 1rem;
   line-height: 1.7;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .landing-hero__ctas {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: var(--space-md);
   flex-wrap: wrap;
   margin-top: var(--space-xs);
@@ -1220,5 +1230,87 @@
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+  }
+}
+
+/* ==========================================================
+   ENTRANCE ANIMATION
+   ========================================================== */
+
+@keyframes lp-fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lp-slide-in-right {
+  from { opacity: 0; transform: translateX(48px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes lp-slide-down {
+  from { opacity: 0; transform: translateY(-100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes lp-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lp-bg-settle {
+  from { transform: scale(1.12); }
+  to   { transform: scale(1); }
+}
+
+/* Background slowly settles in, scrim fades up */
+.landing-hero__bg {
+  animation: lp-bg-settle 1.8s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.landing-hero__scrim {
+  animation: lp-fade 1s ease-out backwards;
+}
+
+/* Navbar slides down */
+.landing-navbar {
+  animation: lp-slide-down 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.1s backwards;
+}
+
+/* Brand side: staggered fade-up */
+.landing-hero__logo,
+.landing-hero__title,
+.landing-hero__desc,
+.landing-hero__ctas {
+  animation: lp-fade-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+.landing-hero__logo  { animation-delay: 0.30s; }
+.landing-hero__title { animation-delay: 0.45s; }
+.landing-hero__desc  { animation-delay: 0.60s; }
+.landing-hero__ctas  { animation-delay: 0.75s; }
+
+/* Login panel slides in from the right */
+.landing-hero__login {
+  animation: lp-slide-in-right 1s cubic-bezier(0.22, 1, 0.36, 1) 0.6s backwards;
+}
+
+/* On phones the panel is stacked below, so fade up instead */
+@media (max-width: 960px) {
+  .landing-hero__login {
+    animation-name: lp-fade-up;
+  }
+}
+
+/* Respect users who prefer less motion */
+@media (prefers-reduced-motion: reduce) {
+  .landing-navbar,
+  .landing-hero__bg,
+  .landing-hero__scrim,
+  .landing-hero__logo,
+  .landing-hero__title,
+  .landing-hero__desc,
+  .landing-hero__ctas,
+  .landing-hero__login {
+    animation: none !important;
   }
 }

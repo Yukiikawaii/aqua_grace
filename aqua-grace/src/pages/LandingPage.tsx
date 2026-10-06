@@ -306,7 +306,7 @@ function LandingPage() {
               </div>
               <div>
                 <p className="contact-item__label">Phone / SMS</p>
-                <p className="contact-item__value">Contact number coming soon</p>
+                <p className="contact-item__value">09534926037</p>
               </div>
             </div>
 

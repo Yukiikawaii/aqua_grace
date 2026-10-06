@@ -234,12 +234,19 @@ function AdminOrders() {
     setFormError(null);
     setFormSuccess(null);
 
-    if (!consumerName.trim() || !consumerPhone.trim()) {
-      setFormError(
-        "Consumer name and phone are required."
-      );
-      return;
-    }
+  if (!consumerName.trim() || !consumerPhone.trim()) {
+  setFormError(
+    "Consumer name and phone are required."
+  );
+  return;
+}
+
+if (!/^\+63\d{10}$/.test(consumerPhone)) {
+  setFormError(
+    "Phone number must be exactly 13 characters and start with +63."
+  );
+  return;
+}
 
     if (
       orderType === "call" &&
@@ -414,20 +421,35 @@ function AdminOrders() {
                 />
               </div>
 
-              <div className="order-form__field">
-                <label>Phone Number</label>
+<div className="order-form__field">
+  <label>Phone Number</label>
 
-                <input
-                  type="tel"
-                  value={consumerPhone}
-                  onChange={(e) =>
-                    setConsumerPhone(
-                      e.target.value
-                    )
-                  }
-                  placeholder="09xx-xxx-xxxx"
-                />
-              </div>
+  <input
+    type="tel"
+    value={consumerPhone}
+    onChange={(e) => {
+      let value = e.target.value;
+
+      // Keep only numbers
+      const digits = value.replace(/\D/g, "");
+
+      // Remove 63 if the user types it
+      const phoneDigits = digits.startsWith("63")
+        ? digits.slice(2)
+        : digits;
+
+      // Limit to 10 digits after +63
+      const limitedDigits = phoneDigits.slice(0, 10);
+
+      setConsumerPhone("+63" + limitedDigits);
+    }}
+    placeholder="Ex. +639171234567"
+    maxLength={13}
+    required
+  />
+</div>
+
+
 
               {orderType === "call" && (
                 <div className="order-form__field order-form__field--full">

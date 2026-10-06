@@ -17,8 +17,13 @@ type DateFilter = "today" | "week" | "month" | "all";
 
 function getDateRange(filter: DateFilter): { from: string; to: string } | null {
   const today = new Date();
-  const fmt = (d: Date) => d.toISOString().split("T")[0];
+const fmt = (d: Date) => {
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
 
+  return `${year}-${month}-${day}`;
+};
   if (filter === "today") return { from: fmt(today), to: fmt(today) };
   if (filter === "week") {
     const start = new Date(today);
