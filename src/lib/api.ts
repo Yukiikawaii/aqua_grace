@@ -105,8 +105,11 @@ export const listDeliveries = () =>
 export const listComplaints = () =>
   get<{ status: string; complaints: unknown[] }>("/deliveries/complaints");
 
-export const dispatchDelivery = (id: number) =>
-  patch<{ status: string; message: string }>(`/deliveries/${id}/dispatch`);
+export const dispatchDelivery = (id: number, staffId: number) =>
+  patch<{ status: string; message: string }>(
+    `/deliveries/${id}/dispatch`,
+    { staffId }
+  );
 
 export const confirmDelivery = (id: number) =>
   patch<{ status: string }>(`/deliveries/${id}/confirm`);
@@ -133,9 +136,13 @@ export const listSales = (from?: string, to?: string) => {
   return get<{ status: string; sales: unknown[] }>(`/sales${params}`);
 };
 
-export const getSalesSummary = () =>
-  get<{ status: string; summary: unknown[] }>("/sales/summary");
+export const getSalesSummary = (from?: string, to?: string) => {
+  const params = from && to ? `?from=${from}&to=${to}` : "";
 
+  return get<{ status: string; summary: unknown[] }>(
+    `/sales/summary${params}`
+  );
+};
 // ── Public stocks (for landing page) ─────────────────────
 export const getPublicStocks = () =>
   get<{ status: string; stocks: unknown[] }>("/stocks");
